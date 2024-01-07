@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { Connection } = require('./config/db');
+const {userRouter} = require("./routes/user.routes")
 
 require('dotenv').config();
 
@@ -9,6 +10,7 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 
+app.use("/user",userRouter)
 
 app.listen(PORT, async () => {
     try {
