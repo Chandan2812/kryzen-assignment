@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 6,
     validate: {
-      validator: (value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(value),
+      validator: (value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$/.test(value),
       message: "Invalid password format. Must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.",
     },
   },
