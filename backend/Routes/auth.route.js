@@ -10,6 +10,12 @@ userRouter.post("/register", validation, async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    // Check if the username is already registered
+    const isUserPresent = await UserModel.findOne({ username });
+    if (isUserPresent) {
+      return res.status(400).json({ success: false, message: 'User already exists' });
+    }
+
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -29,10 +35,17 @@ userRouter.post("/register", validation, async (req, res) => {
   }
 });
 
+
 // Route to log in
 userRouter.post("/login", validation, async (req, res) => {
   try {
     const { username, password } = req.body;
+
+    // Check if the username is present or not
+    const isUserPresent = await UserModel.findOne({ username });
+    if (!isUserPresent) {
+      return res.status(400).json({ success: false, message: 'User not present' });
+    }
 
     // Find the user in the database
     const user = await UserModel.findOne({ username });

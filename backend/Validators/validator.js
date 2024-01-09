@@ -23,7 +23,7 @@ const validation = (req, res, next) => {
 
   // Validate password
   if (!isValidPassword(password)) {
-    return res.status(400).json({ success: false, message: 'Invalid password format, Password is at least 6 characters long and includes at least one uppercase letter, one lowercase letter, and one digit' });
+    return res.status(400).json({ success: false, message: 'Invalid password format, Password is at least 6 characters long and includes at least one uppercase letter, one lowercase letter, and one digit, and one special character' });
   }
 
   next();
