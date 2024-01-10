@@ -77,7 +77,7 @@ userRouter.post("/login", validation, async (req, res) => {
 // Route to log out
 userRouter.post("/logout", (req, res) => {
   // Clear the token cookie
-  res.clearCookie('token');
+  res.clearCookie('authToken');
   res.status(200).json({ success: true, message: 'Logout successful' });
 });
 
